@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,10 +22,12 @@ public class MyFirstTest {
 
     @Test
     public void myFirstTest() {
-        driver.get("http://www.google.com/");
-        driver.findElement(By.name("q")).sendKeys("webdriver");
+        driver.navigate().to("https://www.google.com/");
+        WebElement q = driver.findElement(By.name("q"));
+        driver.navigate().refresh();
+        q.sendKeys("webdriver");
         driver.findElement(By.name("btnG")).click();
-        wait.until(titleIs("webdriver - Поиск в Doogle"));
+        wait.until(titleIs("webdriver - Пошук в Google"));
     }
 
     @After
